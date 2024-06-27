@@ -1,0 +1,257 @@
+Here is the updated HTML code with an additional section for the 3D shape activity. This code will allow your students to see and interact with the examples directly on a webpage.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>p5.js Interactive 2D and 3D Shapes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    .sketch-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .sketch {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>p5.js Interactive 2D and 3D Shapes</h1>
+  <p>Copy and paste the code into your p5.js web editor to see the shapes in action.</p>
+  
+  <div class="sketch-container">
+    <!-- Example 1: Ellipse -->
+    <div class="sketch">
+      <h2>Example 1: Ellipse</h2>
+      <pre><code>
+let ellipseX = 50;
+let ellipseY = 50;
+let ellipseXSpeed = 2;
+let ellipseYSpeed = 2;
+
+function setup() {
+  createCanvas(610, 350); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+
+  // Parameters: ellipse(x, y, width, height)
+  ellipse(ellipseX, ellipseY, 100, 50); // Draw an ellipse
+
+  // Move the ellipse
+  ellipseX += ellipseXSpeed;
+  ellipseY += ellipseYSpeed;
+
+  // Reverse direction when the ellipse hits the edge
+  if (ellipseX > width - 50 || ellipseX < 50) {
+    ellipseXSpeed *= -1;
+  }
+  if (ellipseY > height - 25 || ellipseY < 25) {
+    ellipseYSpeed *= -1;
+  }
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 2: Rectangle -->
+    <div class="sketch">
+      <h2>Example 2: Rectangle</h2>
+      <pre><code>
+let rectX = 50;
+let rectY = 50;
+let rectXSpeed = 3;
+let rectYSpeed = 3;
+
+function setup() {
+  createCanvas(610, 350); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+
+  // Parameters: rect(x, y, width, height)
+  rect(rectX, rectY, 150, 100); // Draw a rectangle
+
+  // Move the rectangle
+  rectX += rectXSpeed;
+  rectY += rectYSpeed;
+
+  // Reverse direction when the rectangle hits the edge
+  if (rectX > width - 150 || rectX < 0) {
+    rectXSpeed *= -1;
+  }
+  if (rectY > height - 100 || rectY < 0) {
+    rectYSpeed *= -1;
+  }
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 3: Line -->
+    <div class="sketch">
+      <h2>Example 3: Line</h2>
+      <pre><code>
+let lineX1 = 50;
+let lineY1 = 50;
+let lineX2 = 150;
+let lineY2 = 150;
+let lineXSpeed = 2;
+let lineYSpeed = 2;
+
+function setup() {
+  createCanvas(610, 350); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+
+  // Parameters: line(x1, y1, x2, y2)
+  line(lineX1, lineY1, lineX2, lineY2); // Draw a line
+
+  // Move the line
+  lineX1 += lineXSpeed;
+  lineY1 += lineYSpeed;
+  lineX2 += lineXSpeed;
+  lineY2 += lineYSpeed;
+
+  // Reverse direction when the line hits the edge
+  if (lineX1 > width || lineX1 < 0) {
+    lineXSpeed *= -1;
+  }
+  if (lineY1 > height || lineY1 < 0) {
+    lineYSpeed *= -1;
+  }
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 4: Triangle -->
+    <div class="sketch">
+      <h2>Example 4: Triangle</h2>
+      <pre><code>
+let triX1 = 100, triY1 = 100;
+let triX2 = 150, triY2 = 50;
+let triX3 = 200, triY3 = 100;
+let triXSpeed = 1, triYSpeed = 1;
+
+function setup() {
+  createCanvas(610, 350); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+
+  // Parameters: triangle(x1, y1, x2, y2, x3, y3)
+  triangle(triX1, triY1, triX2, triY2, triX3, triY3); // Draw a triangle
+
+  // Move the triangle
+  triX1 += triXSpeed;
+  triY1 += triYSpeed;
+  triX2 += triXSpeed;
+  triY2 += triYSpeed;
+  triX3 += triXSpeed;
+  triY3 += triYSpeed;
+
+  // Reverse direction when the triangle hits the edge
+  if (triX1 > width || triX1 < 0 || triX2 > width || triX2 < 0 || triX3 > width || triX3 < 0) {
+    triXSpeed *= -1;
+  }
+  if (triY1 > height || triY1 < 0 || triY2 > height || triY2 < 0 || triY3 > height || triY3 < 0) {
+    triYSpeed *= -1;
+  }
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 5: Quad -->
+    <div class="sketch">
+      <h2>Example 5: Quad</h2>
+      <pre><code>
+let quadX1 = 200, quadY1 = 200;
+let quadX2 = 250, quadY2 = 150;
+let quadX3 = 300, quadY3 = 200;
+let quadX4 = 250, quadY4 = 250;
+let quadXSpeed = 1, quadYSpeed = 1;
+
+function setup() {
+  createCanvas(610, 350); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+
+  // Parameters: quad(x1, y1, x2, y2, x3, y3, x4, y4)
+  quad(quadX1, quadY1, quadX2, quadY2, quadX3, quadY3, quadX4, quadY4); // Draw a quad
+
+  // Move the quad
+  quadX1 += quadXSpeed;
+  quadY1 += quadYSpeed;
+  quadX2 += quadXSpeed;
+  quadY2 += quadYSpeed;
+  quadX3 += quadXSpeed;
+  quadY3 += quadYSpeed;
+  quadX4 += quadXSpeed;
+  quadY4 += quadYSpeed;
+
+  // Reverse direction when the quad hits the edge
+  if (quadX1 > width || quadX1 < 0 || quadX2 > width || quadX2 < 0 || quadX3 > width || quadX3 < 0 || quadX4 > width || quadX4 < 0) {
+    quadXSpeed *= -1;
+  }
+  if (quadY1 > height || quadY1 < 0 || quadY2 > height || quadY2 < 0 || quadY3 > height || quadY3 < 0 || quadY4 > height || quadY4 < 0) {
+    quadYSpeed *= -1;
+  }
+}
+      </code></pre>
+    </div>
+    
+    <!-- Activity: Interactive 3D Shape -->
+    <div class="sketch">
+      <h2>Activity: Interactive 3D Shape</h2>
+      <pre><code>
+let shapeColor;
+let bgColor;
+let x, y;
+
+function setup() {
+  createCanvas(800, 600, WEBGL); // Create a 3D canvas
+  shapeColor = color(255, 0, 0); // Initial shape color
+  bgColor = color(255); // Initial background color
+  background(bgColor);
+  x = 0;
+  y = 0;
+}
+
+function draw() {
+  background(bgColor); // Set the background color
+  x = map(mouseX, 0, width, -200, 200); // Map mouse X to x position
+  y = map(mouseY, 0, height, -200, 200); // Map mouse Y to y position
+  translate(x, y); // Move shape position
+  rotateX(map(mouseY, 0, height, -PI, PI)); // Rotate based on mouse Y position
+  rotateY(map(mouseX, 0, width, -PI, PI)); // Rotate based on mouse X position
+  fill(shapeColor); // Set the shape color
+  
+  // Uncomment the shape you want to display
+
+:
+  //box(100); // Draw a 3D box
+  //sphere(50); // Draw a 3D sphere
+  cone(50, 100); // Draw a 3D cone
+  //cylinder(50, 100); // Draw a 3D cylinder
+  //torus(80, 20); // Draw a 3D torus
+}
+
+function mousePressed() {
+  shapeColor = color(random(255), random(255), random(255)); // Change shape color on click
+  bgColor = color(random(255), random(255), random(255)); // Change background color on click
+}
+      </code></pre>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+This updated HTML code includes an additional section for the interactive 3D shape activity. Students can copy and paste the provided code into their p5.js web editor to see how the shapes behave and interact with mouse movements.
