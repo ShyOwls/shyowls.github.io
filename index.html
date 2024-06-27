@@ -204,6 +204,72 @@ function draw() {
 }
       </code></pre>
     </div>
+
+    <!-- Example 6: 3D Box -->
+    <div class="sketch">
+      <h2>Example 6: 3D Box</h2>
+      <pre><code>
+function setup() {
+  createCanvas(610, 350, WEBGL); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+  rotateY(millis() / 1000); // Rotate over time
+  box(100); // Draw a 3D box
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 7: 3D Sphere -->
+    <div class="sketch">
+      <h2>Example 7: 3D Sphere</h2>
+      <pre><code>
+function setup() {
+  createCanvas(610, 350, WEBGL); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+  rotateY(millis() / 1000); // Rotate over time
+  sphere(50); // Draw a 3D sphere
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 8: 3D Cylinder -->
+    <div class="sketch">
+      <h2>Example 8: 3D Cylinder</h2>
+      <
+
+pre><code>
+function setup() {
+  createCanvas(610, 350, WEBGL); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+  rotateY(millis() / 1000); // Rotate over time
+  cylinder(50, 100); // Draw a 3D cylinder
+}
+      </code></pre>
+    </div>
+
+    <!-- Example 9: 3D Torus -->
+    <div class="sketch">
+      <h2>Example 9: 3D Torus</h2>
+      <pre><code>
+function setup() {
+  createCanvas(610, 350, WEBGL); // Set canvas size
+}
+
+function draw() {
+  background(180); // Clear the canvas every frame
+  rotateY(millis() / 1000); // Rotate over time
+  torus(80, 20); // Draw a 3D torus
+}
+      </code></pre>
+    </div>
     
     <!-- Activity: Interactive 3D Shape -->
     <div class="sketch">
@@ -231,7 +297,7 @@ function draw() {
   rotateY(map(mouseX, 0, width, -PI, PI)); // Rotate based on mouse X position
   fill(shapeColor); // Set the shape color
   
-  // Uncomment the shape you want to display
+  // Uncomment the shape you want to display:
   //box(100); // Draw a 3D box
   //sphere(50); // Draw a 3D sphere
   cone(50, 100); // Draw a 3D cone
