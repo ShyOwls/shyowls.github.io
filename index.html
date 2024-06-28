@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -240,9 +239,7 @@ function draw() {
     <!-- Example 8: 3D Cylinder -->
     <div class="sketch">
       <h2>Example 8: 3D Cylinder</h2>
-      <
-
-<pre><code>
+      <pre><code>
 function setup() {
   createCanvas(610, 350, WEBGL); // Set canvas size
 }
@@ -308,6 +305,231 @@ function draw() {
 function mousePressed() {
   shapeColor = color(random(255), random(255), random(255)); // Change shape color on click
   bgColor = color(random(255), random(255), random(255)); // Change background color on click
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <h1>Extra Examples</h1>
+  <div class="sketch-container">
+    <!-- Extra Example 1: Rain Effect -->
+    <div class="sketch">
+      <h2>Rain Effect</h2>
+      <pre><code>
+let drops = [];
+
+function setup() {
+  createCanvas(800, 600); // Set canvas size
+  for (let i = 0; i < 500; i++) { // Adjust the number of raindrops
+    drops.push(new Drop());
+  }
+}
+
+function draw() {
+  background(230, 230, 250); // Set background color (light lavender)
+  for (let drop of drops) {
+    drop.fall();
+    drop.show();
+  }
+}
+
+class Drop {
+  constructor() {
+    this.x = random(width); // Initial x position
+    this.y = random(-500, -50); // Initial y position
+    this.z = random(0, 20); // Depth of drop
+    this.len = map(this.z, 0, 20, 10, 20); // Length of drop
+    this.yspeed = map(this.z, 0, 20, 1, 20); // Speed of drop
+  }
+
+  fall() {
+    this.y = this.y + this.yspeed; // Update y position
+    let grav = map(this.z, 0, 20, 0, 0.2); // Gravity effect
+    this.yspeed = this.yspeed + grav;
+
+    if (this.y > height) {
+      this.y = random(-200, -100); // Reset y position when off screen
+      this.yspeed = map(this.z, 0, 20, 4, 10); // Reset speed
+    }
+  }
+
+  show() {
+    let thick = map(this.z, 0, 20, 1, 3); // Thickness of drop
+    strokeWeight(thick);
+    stroke(138, 43, 226); // Color of drop (blue-violet)
+    line(this.x, this.y, this.x, this.y + this.len); // Draw the drop
+  }
+}
+      </code></pre>
+    </div>
+
+    <!-- Extra Example 2: Fly, Fight, Win -->
+    <div class="sketch">
+      <h2>Fly, Fight, Win</h2>
+      <pre><code>
+let size = 32; // Initial text size
+let growing = true; // Variable to control text size growth
+
+function setup() {
+  createCanvas(800, 600); // Set canvas size
+  textAlign(CENTER, CENTER); // Center align text
+  textSize(size); // Set initial text size
+}
+
+function draw() {
+  background(0); // Set background color (black)
+  
+  fill(255, 0, 0); // Set text color (red)
+  text('Fly', width / 2, height / 2 - 40); // Draw "Fly" text
+  
+  fill(0, 255, 0); // Set text color (green)
+  text('Fight', width / 2, height / 2); // Draw "Fight" text
+  
+  fill(0, 0, 255); // Set text color (blue)
+  text('Win', width / 2, height / 2 + 40); // Draw "Win" text
+
+  // Pulse effect to grow and shrink text size
+  if (growing) {
+    size += 0.5; // Increase text size
+    if (size > 64) { // Maximum text size
+      growing = false; // Start shrinking
+    }
+  } else {
+    size -= 0.5; // Decrease text size
+    if (size < 32) { // Minimum text size
+      growing = true; // Start growing
+    }
+  }
+  textSize(size); // Apply new text size
+}
+      </code></pre>
+    </div>
+
+    <!-- Extra Example 3: Interactive Fireworks -->
+    <div class="sketch">
+      <h2>Interactive Fireworks</h2>
+      <pre><code>
+let fireworks = []; // Array to hold fireworks
+let gravity; // Gravity effect
+
+function setup() {
+  createCanvas(800, 600); // Set canvas size
+  gravity = createVector(0, 0.2); // Set gravity vector
+  colorMode(HSB); // Set color mode to HSB
+  stroke(255); // Set stroke color to white
+  strokeWeight(4); // Set stroke weight
+  background(0); // Set background color to black
+}
+
+function draw() {
+  background(0, 0, 0, 25); // Create a fade effect
+  for (let i = fireworks.length - 1; i >= 0; i--) {
+    fireworks[i].update();
+    fireworks[i].show();
+    if (fireworks[i].done()) {
+      fireworks.splice(i, 1); // Remove finished fireworks
+    }
+  }
+}
+
+function mousePressed() {
+  fireworks.push(new Firework()); // Add new firework on mouse press
+}
+
+class Particle {
+  constructor(x, y, hu, firework) {
+    this.pos = createVector(x, y); // Position of particle
+    this.firework = firework; // Is it a firework particle or explosion
+    this.lifespan = 255; // Lifespan of particle
+    this.hu = hu; // Hue color
+    if (this.firework) {
+      this.vel = createVector(0, random(-12, -8)); // Initial velocity
+    } else {
+      this.vel = p5.Vector.random2D(); // Random direction
+      this.vel.mult(random(2, 10)); // Random speed
+    }
+    this.acc = createVector(0, 0); // Acceleration
+  }
+
+  applyForce(force) {
+    this.acc.add(force); // Apply force to acceleration
+  }
+
+  update() {
+    if (!this.firework) {
+      this.vel.mult(0.9); // Slow down over time
+      this.lifespan -= 4; // Reduce lifespan
+    }
+    this.vel.add(this.acc); // Apply acceleration to velocity
+    this.pos.add(this.vel); // Apply velocity to position
+    this.acc.mult(0); // Reset acceleration
+  }
+
+  done() {
+    return this.lifespan < 0; // Check if particle is dead
+  }
+
+  show() {
+    colorMode(HSB); // Set color mode
+    if (!this.firework) {
+      strokeWeight(2);
+      stroke(this.hu, 255, 255, this.lifespan); // Explosion particle color
+    } else {
+      strokeWeight(4);
+      stroke(this.hu, 255, 255); // Firework color
+    }
+    point(this.pos.x, this.pos.y); // Draw particle
+  }
+}
+
+class Firework {
+  constructor() {
+    this.hu = random(255); // Random color
+    this.firework = new Particle(random(width), height, this.hu, true); // Initial firework particle
+    this.exploded = false; // Has the firework exploded
+    this.particles = []; // Array for explosion particles
+  }
+
+  done() {
+    return this.exploded && this.particles.length === 0; // Check if firework is done
+  }
+
+  update() {
+    if (!this.exploded) {
+      this.firework.applyForce(gravity); // Apply gravity to firework
+      this.firework.update();
+
+      if (this.firework.vel.y >= 0) {
+        this.exploded = true; // Trigger explosion
+        this.explode();
+      }
+    }
+
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      this.particles[i].applyForce(gravity); // Apply gravity to particles
+      this.particles[i].update();
+      if (this.particles[i].done()) {
+        this.particles.splice(i, 1); // Remove dead particles
+      }
+    }
+  }
+
+  explode() {
+    for (let i = 0; i < 100; i++) {
+      let p = new Particle(this.firework.pos.x, this.firework.pos.y, this.hu, false); // Create explosion particles
+      this.particles.push(p);
+    }
+  }
+
+  show() {
+    if (!this.exploded) {
+      this.firework.show(); // Show initial firework particle
+    }
+
+    for (let p of this.particles) {
+      p.show(); // Show explosion particles
+    }
+  }
 }
       </code></pre>
     </div>
