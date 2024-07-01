@@ -21,7 +21,7 @@ h1 {
 }
 
 /* Style for sub-headings */
-h2 {
+h2, h3 {
   color: #005bb5;
   font-size: 1.5em;
   margin-top: 20px;
