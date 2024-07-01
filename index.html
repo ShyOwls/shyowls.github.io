@@ -12,6 +12,8 @@
   <p>This interactive 3D solar system demonstrates the use of the <strong><code>PI</code></strong> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
   <a href="https://editor.p5js.org/" target="_blank">Open p5.js Editor</a>
 
+  <a href="#activity-code" style="display:block; margin-top:20px; font-weight:bold;">Jump to Activity Code</a>
+
   <h2>Code Explanation</h2>
   <p>
     The <strong>sun</strong> is represented by a central sphere, and planets orbit around it in 3D space. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
@@ -19,6 +21,13 @@
   <p>
     The JavaScript code starts by declaring global variables: <em>sun</em> to store the sun object and <em>planets</em> to store multiple planet objects in an array.
   </p>
+
+  <aside>
+    <h3>Definitions and Terms</h3>
+    <p><strong>Sine and Cosine:</strong> Trigonometric functions used to calculate positions in circular motion.</p>
+    <p><strong>Array:</strong> A data structure that holds multiple values.</p>
+    <p><strong>Global Variables:</strong> Variables that are declared outside any function and can be accessed anywhere in the code.</p>
+  </aside>
 
   <h3>Global Variables</h3>
   <pre><code>
@@ -99,6 +108,120 @@ class Planet {
     let y = this.d * sin(this.angle); // Calculate the y position using sine
     translate(x, y); // Move to the planet's position
     sphere(this.r); // Draw the planet as a sphere
+    pop();
+  }
+}
+  </code></pre>
+
+  <aside>
+    <h3>Hints Guide (Cheat Sheet)</h3>
+    <p><strong>Change the Background Color:</strong></p>
+    <ul>
+      <li>Locate the line in the draw function that sets the background color.</li>
+      <li>Change the color to a dark blue by replacing 0 with the RGB values for dark blue.</li>
+    </ul>
+    <p><strong>Add More Planets:</strong></p>
+    <ul>
+      <li>Locate the section in the setup function where the planets are initialized.</li>
+      <li>Add two more planets with different properties.</li>
+    </ul>
+    <p><strong>Change the Speed of Rotation for the Entire Scene:</strong></p>
+    <ul>
+      <li>Locate the line in the draw function that rotates the scene.</li>
+      <li>Increase the speed by changing the rotation factor.</li>
+    </ul>
+    <p><strong>Modify the Size of the Sun:</strong></p>
+    <ul>
+      <li>Locate the line in the setup function where the sun is initialized.</li>
+      <li>Increase the radius of the sun.</li>
+    </ul>
+    <p><strong>Add Rings to a Planet:</strong></p>
+    <ul>
+      <li>Locate the show method in the Planet class.</li>
+      <li>Modify the show method to add rings to the third planet (green planet).</li>
+    </ul>
+    <p><strong>Change the Color of the Sun:</strong></p>
+    <ul>
+      <li>Locate the line in the setup function where the sun is initialized.</li>
+      <li>Change the color to a brighter yellow.</li>
+    </ul>
+    <p><strong>Adjust the Distance of a Planet from the Sun:</strong></p>
+    <ul>
+      <li>Locate the initialization of the red planet in the setup function.</li>
+      <li>Change the distance of the red planet from the sun.</li>
+    </ul>
+  </aside>
+
+  <div>
+    <label>
+      <input type="checkbox" id="task1"> Change the Background Color
+    </label><br>
+    <label>
+      <input type="checkbox" id="task2"> Add More Planets
+    </label><br>
+    <label>
+      <input type="checkbox" id="task3"> Change the Speed of Rotation for the Entire Scene
+    </label><br>
+    <label>
+      <input type="checkbox" id="task4"> Modify the Size of the Sun
+    </label><br>
+    <label>
+      <input type="checkbox" id="task5"> Add Rings to a Planet
+    </label><br>
+    <label>
+      <input type="checkbox" id="task6"> Change the Color of the Sun
+    </label><br>
+    <label>
+      <input type="checkbox" id="task7"> Adjust the Distance of a Planet from the Sun
+    </label>
+  </div>
+
+  <h2 id="activity-code">Activity Code</h2>
+  <p>Copy and paste the following code into your p5.js editor:</p>
+  <pre><code>
+let sun;
+let planets = [];
+
+function setup() {
+  createCanvas(800, 800, WEBGL);
+  sun = new Planet(50, 0, 0, color(255, 204, 0));
+  planets.push(new Planet(20, 150, 0.02, color(100, 100, 255)));
+  planets.push(new Planet(30, 300, 0.01, color(255, 100, 100)));
+}
+
+function draw() {
+  background(0);
+  directionalLight(255, 255, 255, 1, 1, -1);
+  ambientLight(50);
+  rotateY(frameCount * 0.01);
+  sun.show();
+  for (let planet of planets) {
+    planet.orbit();
+    planet.show();
+  }
+}
+
+class Planet {
+  constructor(r, d, s, c) {
+    this.r = r;
+    this.d = d;
+    this.angle = random(TWO_PI);
+    this.speed = s;
+    this.c = c;
+  }
+
+  orbit() {
+    this.angle += this.speed;
+  }
+
+  show() {
+    push();
+    fill(this.c);
+    noStroke();
+    let x = this.d * cos(this.angle);
+    let y = this.d * sin(this.angle);
+    translate(x, y);
+    sphere(this.r);
     pop();
   }
 }
