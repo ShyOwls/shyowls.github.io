@@ -3,16 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Solar System</title>
+  <title>Interactive 3D Solar System</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
-  <h1>Interactive Solar System</h1>
-  <p>This interactive solar system demonstrates the use of the <code>PI</code> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
+  <h1>Interactive 3D Solar System</h1>
+  <p>This interactive 3D solar system demonstrates the use of the <strong><code>PI</code></strong> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
   <a href="https://editor.p5js.org/" target="_blank">Open p5.js Editor</a>
 
   <h2>Code Explanation</h2>
   <p>
-    The <strong>sun</strong> is represented by a central circle, and planets orbit around it. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
+    The <strong>sun</strong> is represented by a central sphere, and planets orbit around it in 3D space. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
+  </p>
+  <p>
+    The JavaScript code starts by declaring global variables: <em>sun</em> to store the sun object and <em>planets</em> to store multiple planet objects in an array.
+  </p>
+  <p>
+    <strong>Sine</strong> and <strong>cosine</strong> are trigonometric functions that relate the angles of a right triangle to the lengths of its sides. For an angle θ:
+    <ul>
+      <li><em>cos(θ)</em> is the ratio of the adjacent side to the hypotenuse.</li>
+      <li><em>sin(θ)</em> is the ratio of the opposite side to the hypotenuse.</li>
+    </ul>
+    In this context, they are used to calculate the <em>x</em> and <em>y</em> positions of the planets in their circular orbits.
+  </p>
+  <p>
+    An <strong>array</strong> is a data structure that can hold multiple values at once. In JavaScript, arrays are used to store lists of items, such as the <em>planets</em> array in this example. Each item in an array can be accessed by its index, which starts at 0.
+  </p>
+  <h3>Explanation of the 3D Solar System Code</h3>
+  <p>
+    <strong>Global Variables:</strong>
+    <ul>
+      <li><strong>sun</strong>: Variable to store the sun object.</li>
+      <li><strong>planets</strong>: Array to store multiple planet objects.</li>
+    </ul>
+  </p>
+  <p>
+    <strong>Setup Function:</strong>
+    <ul>
+      <li><em>createCanvas(800, 800, WEBGL)</em>: Creates a 3D canvas of size 800x800 pixels.</li>
+      <li><em>sun = new Planet(50, 0, 0, color(255, 204, 0))</em>: Initializes the sun with a radius of 50, at the center of the canvas, and a yellow color.</li>
+      <li><em>planets.push(new Planet(20, 150, 0.02, color(100, 100, 255)))</em>: Adds a blue planet with a radius of 20, a distance of 150 from the sun, and a speed of 0.02.</li>
+      <li><em>planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))</em>: Adds a red planet with a radius of 30, a distance of 300 from the sun, and a speed of 0.01.</li>
+    </ul>
+  </p>
+  <p>
+    <strong>Draw Function:</strong>
+    <ul>
+      <li><em>background(0)</em>: Sets the background color to black.</li>
+      <li><em>directionalLight(255, 255, 255, 1, 1, -1)</em>: Sets a directional light.</li>
+      <li><em>ambientLight(50)</em>: Adds ambient light to the scene.</li>
+      <li><em>rotateY(frameCount * 0.01)</em>: Rotates the entire scene for a better view.</li>
+      <li><em>sun.show()</em>: Displays the sun.</li>
+      <li><em>for (let planet of planets) { planet.orbit(); planet.show(); }</em>: Loops through each planet, updates its position, and displays it.</li>
+    </ul>
+  </p>
+  <p>
+    <strong>Planet Class:</strong>
+    <ul>
+      <li><em>constructor(r, d, s, c)</em>: Initializes the planet's properties: radius, distance from the sun, initial angle for the orbit, speed of the orbit, and color.</li>
+      <li><em>orbit()</em>: Updates the planet's position by increasing the angle by the speed.</li>
+      <li><em>show()</em>:
+        <ul>
+          <li><em>push() and pop()</em>: Saves and restores the current drawing style and transformations.</li>
+          <li><em>fill(this.c)</em>: Sets the fill color to the planet's color.</li>
+          <li><em>noStroke()</em>: Disables the stroke.</li>
+          <li><em>translate(x, y)</em>: Moves to the planet's position.</li>
+          <li><em>sphere(this.r)</em>: Draws the planet as a sphere.</li>
+        </ul>
+      </li>
+    </ul>
   </p>
   <pre>
     <code>
@@ -24,8 +84,8 @@ let planets = [];
 
 // The setup function runs once when the program starts
 function setup() {
-  // Create a canvas of size 800x800 pixels
-  createCanvas(800, 800);
+  // Create a 3D canvas of size 800x800 pixels
+  createCanvas(800, 800, WEBGL);
 
   // Initialize the sun with a radius of 50, at the center of the canvas, and a yellow color
   sun = new Planet(50, 0, 0, color(255, 204, 0));
@@ -40,8 +100,12 @@ function draw() {
   // Set the background color to black
   background(0);
 
-  // Translate the origin point to the center of the canvas
-  translate(width / 2, height / 2);
+  // Set lights for the 3D environment
+  directionalLight(255, 255, 255, 1, 1, -1);
+  ambientLight(50);
+
+  // Rotate the entire scene for better view
+  rotateY(frameCount * 0.01);
 
   // Display the sun
   sun.show();
@@ -53,18 +117,6 @@ function draw() {
     // Display the planet
     planet.show();
   }
-}
-
-// Function to add new planets when the mouse is pressed
-function mousePressed() {
-  // Generate random properties for the new planet
-  let r = random(10, 30); // Random radius between 10 and 30
-  let d = random(100, 400); // Random distance from the sun between 100 and 400
-  let s = random(0.005, 0.03); // Random speed between 0.005 and 0.03
-  let c = color(random(255), random(255), random(255)); // Random color
-
-  // Add the new planet to the planets array
-  planets.push(new Planet(r, d, s, c));
 }
 
 // Class to represent a planet
@@ -85,11 +137,14 @@ class Planet {
 
   // Method to display the planet
   show() {
+    push();
     fill(this.c); // Set the fill color to the planet's color
     noStroke(); // Disable the stroke
     let x = this.d * cos(this.angle); // Calculate the x position using cosine
     let y = this.d * sin(this.angle); // Calculate the y position using sine
-    ellipse(x, y, this.r * 2); // Draw the planet as a circle
+    translate(x, y); // Move to the planet's position
+    sphere(this.r); // Draw the planet as a sphere
+    pop();
   }
 }
     </code>

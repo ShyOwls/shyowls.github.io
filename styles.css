@@ -1,0 +1,71 @@
+/* Reset some default browser styles */
+body, h1, h2, p, pre, code {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a basic style to the body */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 20px;
+}
+
+/* Style for main title */
+h1 {
+  color: #0073e6;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Style for sub-headings */
+h2 {
+  color: #005bb5;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Style for paragraphs */
+p {
+  margin-bottom: 15px;
+}
+
+/* Style for links */
+a {
+  color: #0073e6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style for code blocks */
+pre, code {
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+/* Style for the code within paragraphs */
+code {
+  padding: 2px 5px;
+  font-size: 0.9em;
+}
+
+/* Adding some padding and margin to the body */
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
