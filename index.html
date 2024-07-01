@@ -44,7 +44,7 @@
       <li><em>createCanvas(800, 800, WEBGL)</em>: Creates a 3D canvas of size 800x800 pixels.</li>
       <li><em>sun = new Planet(50, 0, 0, color(255, 204, 0))</em>: Initializes the sun with a radius of 50, at the center of the canvas, and a yellow color.</li>
       <li><em>planets.push(new Planet(20, 150, 0.02, color(100, 100, 255)))</em>: Adds a blue planet with a radius of 20, a distance of 150 from the sun, and a speed of 0.02.</li>
-      <li><em>planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))</em>: Adds a red planet with a radius of 30, a distance of 300 from the sun, and a speed of 0.01.</li>
+      <li><em>planets.push(new Planet(30, 300, 0.01, color(255, 100, 100)))</em>: Adds a red planet with a radius of 30, a distance of 300 from the sun, and a speed of 0.01.</li>
     </ul>
   </p>
   <p>
@@ -76,52 +76,52 @@
   </p>
   <pre>
     <code>
-// Variable to store the sun object
+/* Variable to store the sun object */
 let sun;
 
-// Array to store multiple planet objects
+/* Array to store multiple planet objects */
 let planets = [];
 
-// The setup function runs once when the program starts
+/* The setup function runs once when the program starts */
 function setup() {
-  // Create a 3D canvas of size 800x800 pixels
+  /* Create a 3D canvas of size 800x800 pixels */
   createCanvas(800, 800, WEBGL);
 
-  // Initialize the sun with a radius of 50, at the center of the canvas, and a yellow color
+  /* Initialize the sun with a radius of 50, at the center of the canvas, and a yellow color */
   sun = new Planet(50, 0, 0, color(255, 204, 0));
 
-  // Initialize two planets with different properties
+  /* Initialize two planets with different properties */
   planets.push(new Planet(20, 150, 0.02, color(100, 100, 255))); // Blue planet
   planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))); // Red planet
 }
 
-// The draw function runs continuously in a loop
+/* The draw function runs continuously in a loop */
 function draw() {
-  // Set the background color to black
+  /* Set the background color to black */
   background(0);
 
-  // Set lights for the 3D environment
+  /* Set lights for the 3D environment */
   directionalLight(255, 255, 255, 1, 1, -1);
   ambientLight(50);
 
-  // Rotate the entire scene for better view
+  /* Rotate the entire scene for better view */
   rotateY(frameCount * 0.01);
 
-  // Display the sun
+  /* Display the sun */
   sun.show();
 
-  // Loop through each planet in the planets array
+  /* Loop through each planet in the planets array */
   for (let planet of planets) {
-    // Update the planet's position
+    /* Update the planet's position */
     planet.orbit();
-    // Display the planet
+    /* Display the planet */
     planet.show();
   }
 }
 
-// Class to represent a planet
+/* Class to represent a planet */
 class Planet {
-  // Constructor to initialize the planet's properties
+  /* Constructor to initialize the planet's properties */
   constructor(r, d, s, c) {
     this.r = r; // Radius of the planet
     this.d = d; // Distance from the sun
@@ -130,12 +130,12 @@ class Planet {
     this.c = c; // Color of the planet
   }
 
-  // Method to update the planet's position
+  /* Method to update the planet's position */
   orbit() {
     this.angle += this.speed; // Increase the angle by the speed to create orbital motion
   }
 
-  // Method to display the planet
+  /* Method to display the planet */
   show() {
     push();
     fill(this.c); // Set the fill color to the planet's color
