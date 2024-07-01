@@ -64,6 +64,8 @@ function setup() {
   // Initialize two planets with different properties
   planets.push(new Planet(20, 150, 0.02, color(100, 100, 255))); // Blue planet
   planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))); // Red planet
+  planets.push(new Planet(25, 200, 0.015, color(0, 255, 0))); // Green planet
+  planets.push(new Planet(35, 400, 0.005, color(255, 255, 0))); // Yellow planet
 }
   </code></pre>
 
@@ -79,7 +81,7 @@ function draw() {
   ambientLight(50);
 
   // Rotate the entire scene for better view
-  rotateY(frameCount * 0.01);
+  rotateY(frameCount * 0.02);
 
   // Display the sun
   sun.show();
@@ -117,10 +119,10 @@ class Planet {
     push();
     fill(this.c); // Set the fill color to the planet's color
     noStroke(); // Disable the stroke
-    let x = this.d * cos(this.angle); // Calculate the x position using cosine
-    let y = this.d * sin(this.angle); // Calculate the y position using sine
-    translate(x, y); // Move to the planet's position
-    sphere(this.r); // Draw the planet as a sphere
+    let x = this.d * cos(this.angle);
+    let y = this.d * sin(this.angle);
+    translate(x, y);
+    sphere(this.r);
     pop();
   }
 }
@@ -148,11 +150,6 @@ class Planet {
       <li>Locate the line in the setup function where the sun is initialized.</li>
       <li>Increase the radius of the sun.</li>
     </ul>
-    <p><strong>Add Rings to a Planet:</strong></p>
-    <ul>
-      <li>Locate the show method in the Planet class.</li>
-      <li>Modify the show method to add rings to the third planet (green planet).</li>
-    </ul>
     <p><strong>Change the Color of the Sun:</strong></p>
     <ul>
       <li>Locate the line in the setup function where the sun is initialized.</li>
@@ -179,13 +176,10 @@ class Planet {
       <input type="checkbox" id="task4"> Modify the Size of the Sun
     </label><br>
     <label>
-      <input type="checkbox" id="task5"> Add Rings to a Planet
+      <input type="checkbox" id="task5"> Change the Color of the Sun
     </label><br>
     <label>
-      <input type="checkbox" id="task6"> Change the Color of the Sun
-    </label><br>
-    <label>
-      <input type="checkbox" id="task7"> Adjust the Distance of a Planet from the Sun
+      <input type="checkbox" id="task6"> Adjust the Distance of a Planet from the Sun
     </label><br>
     <button id="submit-tasks">Submit</button>
     <button id="jump-to-top" style="display:none;">Jump to Top</button>
@@ -208,7 +202,7 @@ function draw() {
   background(0);
   directionalLight(255, 255, 255, 1, 1, -1);
   ambientLight(50);
-  rotateY(frameCount * 0.01);
+  rotateY(frameCount * 0.02);
   sun.show();
   for (let planet of planets) {
     planet.orbit();
