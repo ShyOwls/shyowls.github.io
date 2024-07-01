@@ -100,6 +100,13 @@ input[type="checkbox"] {
   font-size: 1.2em;
   border-radius: 5px;
   margin-bottom: 20px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 #completion-banner.hidden {
@@ -108,4 +115,20 @@ input[type="checkbox"] {
 
 #completion-banner.visible {
   display: block;
+}
+
+/* Style for jump to top button */
+#jump-to-top {
+  margin-top: 10px;
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+#jump-to-top:hover {
+  background: #005bb5;
 }
