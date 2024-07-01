@@ -1,597 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>p5.js Interactive 2D and 3D Shapes</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <style>
-    .sketch-container {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .sketch {
-      margin: 20px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Solar System</title>
 </head>
 <body>
-  <h1>p5.js Interactive 2D and 3D Shapes</h1>
-  <p>Copy and paste the code into your p5.js web editor to see the shapes in action.</p>
-  
-  <div class="sketch-container">
-    <!-- Example 1: Ellipse -->
-    <div class="sketch">
-      <h2>Example 1: Ellipse</h2>
-      <pre><code>
-let ellipseX = 50;
-let ellipseY = 50;
-let ellipseXSpeed = 2;
-let ellipseYSpeed = 2;
+  <h1>Interactive Solar System</h1>
+  <p>This interactive solar system demonstrates the use of the <code>PI</code> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
+  <a href="https://editor.p5js.org/" target="_blank">Open p5.js Editor</a>
 
+  <h2>Code Explanation</h2>
+  <p>
+    The <strong>sun</strong> is represented by a central circle, and planets orbit around it. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
+  </p>
+  <pre>
+    <code>
+// Variable to store the sun object
+let sun;
+
+// Array to store multiple planet objects
+let planets = [];
+
+// The setup function runs once when the program starts
 function setup() {
-  createCanvas(610, 350); // Set canvas size
+  // Create a canvas of size 800x800 pixels
+  createCanvas(800, 800);
+
+  // Initialize the sun with a radius of 50, at the center of the canvas, and a yellow color
+  sun = new Planet(50, 0, 0, color(255, 204, 0));
+
+  // Initialize two planets with different properties
+  planets.push(new Planet(20, 150, 0.02, color(100, 100, 255))); // Blue planet
+  planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))); // Red planet
 }
 
+// The draw function runs continuously in a loop
 function draw() {
-  background(180); // Clear the canvas every frame
+  // Set the background color to black
+  background(0);
 
-  // Parameters: ellipse(x, y, width, height)
-  ellipse(ellipseX, ellipseY, 100, 50); // Draw an ellipse
+  // Translate the origin point to the center of the canvas
+  translate(width / 2, height / 2);
 
-  // Move the ellipse
-  ellipseX += ellipseXSpeed;
-  ellipseY += ellipseYSpeed;
+  // Display the sun
+  sun.show();
 
-  // Reverse direction when the ellipse hits the edge
-  if (ellipseX > width - 50 || ellipseX < 50) {
-    ellipseXSpeed *= -1;
-  }
-  if (ellipseY > height - 25 || ellipseY < 25) {
-    ellipseYSpeed *= -1;
-  }
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 2: Rectangle -->
-    <div class="sketch">
-      <h2>Example 2: Rectangle</h2>
-      <pre><code>
-let rectX = 50;
-let rectY = 50;
-let rectXSpeed = 3;
-let rectYSpeed = 3;
-
-function setup() {
-  createCanvas(610, 350); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-
-  // Parameters: rect(x, y, width, height)
-  rect(rectX, rectY, 150, 100); // Draw a rectangle
-
-  // Move the rectangle
-  rectX += rectXSpeed;
-  rectY += rectYSpeed;
-
-  // Reverse direction when the rectangle hits the edge
-  if (rectX > width - 150 || rectX < 0) {
-    rectXSpeed *= -1;
-  }
-  if (rectY > height - 100 || rectY < 0) {
-    rectYSpeed *= -1;
+  // Loop through each planet in the planets array
+  for (let planet of planets) {
+    // Update the planet's position
+    planet.orbit();
+    // Display the planet
+    planet.show();
   }
 }
-      </code></pre>
-    </div>
 
-    <!-- Example 3: Line -->
-    <div class="sketch">
-      <h2>Example 3: Line</h2>
-      <pre><code>
-let lineX1 = 50;
-let lineY1 = 50;
-let lineX2 = 150;
-let lineY2 = 150;
-let lineXSpeed = 2;
-let lineYSpeed = 2;
-
-function setup() {
-  createCanvas(610, 350); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-
-  // Parameters: line(x1, y1, x2, y2)
-  line(lineX1, lineY1, lineX2, lineY2); // Draw a line
-
-  // Move the line
-  lineX1 += lineXSpeed;
-  lineY1 += lineYSpeed;
-  lineX2 += lineXSpeed;
-  lineY2 += lineYSpeed;
-
-  // Reverse direction when the line hits the edge
-  if (lineX1 > width || lineX1 < 0) {
-    lineXSpeed *= -1;
-  }
-  if (lineY1 > height || lineY1 < 0) {
-    lineYSpeed *= -1;
-  }
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 4: Triangle -->
-    <div class="sketch">
-      <h2>Example 4: Triangle</h2>
-      <pre><code>
-let triX1 = 100, triY1 = 100;
-let triX2 = 150, triY2 = 50;
-let triX3 = 200, triY3 = 100;
-let triXSpeed = 1, triYSpeed = 1;
-
-function setup() {
-  createCanvas(610, 350); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-
-  // Parameters: triangle(x1, y1, x2, y2, x3, y3)
-  triangle(triX1, triY1, triX2, triY2, triX3, triY3); // Draw a triangle
-
-  // Move the triangle
-  triX1 += triXSpeed;
-  triY1 += triYSpeed;
-  triX2 += triXSpeed;
-  triY2 += triYSpeed;
-  triX3 += triXSpeed;
-  triY3 += triYSpeed;
-
-  // Reverse direction when the triangle hits the edge
-  if (triX1 > width || triX1 < 0 || triX2 > width || triX2 < 0 || triX3 > width || triX3 < 0) {
-    triXSpeed *= -1;
-  }
-  if (triY1 > height || triY1 < 0 || triY2 > height || triY2 < 0 || triY3 > height || triY3 < 0) {
-    triYSpeed *= -1;
-  }
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 5: Quad -->
-    <div class="sketch">
-      <h2>Example 5: Quad</h2>
-      <pre><code>
-let quadX1 = 200, quadY1 = 200;
-let quadX2 = 250, quadY2 = 150;
-let quadX3 = 300, quadY3 = 200;
-let quadX4 = 250, quadY4 = 250;
-let quadXSpeed = 1, quadYSpeed = 1;
-
-function setup() {
-  createCanvas(610, 350); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-
-  // Parameters: quad(x1, y1, x2, y2, x3, y3, x4, y4)
-  quad(quadX1, quadY1, quadX2, quadY2, quadX3, quadY3, quadX4, quadY4); // Draw a quad
-
-  // Move the quad
-  quadX1 += quadXSpeed;
-  quadY1 += quadYSpeed;
-  quadX2 += quadXSpeed;
-  quadY2 += quadYSpeed;
-  quadX3 += quadXSpeed;
-  quadY3 += quadYSpeed;
-  quadX4 += quadXSpeed;
-  quadY4 += quadYSpeed;
-
-  // Reverse direction when the quad hits the edge
-  if (quadX1 > width || quadX1 < 0 || quadX2 > width || quadX2 < 0 || quadX3 > width || quadX3 < 0 || quadX4 > width || quadX4 < 0) {
-    quadXSpeed *= -1;
-  }
-  if (quadY1 > height || quadY1 < 0 || quadY2 > height || quadY2 < 0 || quadY3 > height || quadY3 < 0 || quadY4 > height || quadY4 < 0) {
-    quadYSpeed *= -1;
-  }
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 6: 3D Box -->
-    <div class="sketch">
-      <h2>Example 6: 3D Box</h2>
-      <pre><code>
-function setup() {
-  createCanvas(610, 350, WEBGL); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-  rotateY(millis() / 1000); // Rotate over time
-  box(100); // Draw a 3D box
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 7: 3D Sphere -->
-    <div class="sketch">
-      <h2>Example 7: 3D Sphere</h2>
-      <pre><code>
-function setup() {
-  createCanvas(610, 350, WEBGL); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-  rotateY(millis() / 1000); // Rotate over time
-  sphere(50); // Draw a 3D sphere
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 8: 3D Cylinder -->
-    <div class="sketch">
-      <h2>Example 8: 3D Cylinder</h2>
-      <pre><code>
-function setup() {
-  createCanvas(610, 350, WEBGL); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-  rotateY(millis() / 1000); // Rotate over time
-  cylinder(50, 100); // Draw a 3D cylinder
-}
-      </code></pre>
-    </div>
-
-    <!-- Example 9: 3D Torus -->
-    <div class="sketch">
-      <h2>Example 9: 3D Torus</h2>
-      <pre><code>
-function setup() {
-  createCanvas(610, 350, WEBGL); // Set canvas size
-}
-
-function draw() {
-  background(180); // Clear the canvas every frame
-  rotateY(millis() / 1000); // Rotate over time
-  torus(80, 20); // Draw a 3D torus
-}
-      </code></pre>
-    </div>
-    
-    <!-- Activity: Interactive 3D Shape -->
-    <div class="sketch">
-      <h2>Activity: Interactive 3D Shape</h2>
-      <pre><code>
-let shapeColor;
-let bgColor;
-let x, y;
-
-function setup() {
-  createCanvas(800, 600, WEBGL); // Create a 3D canvas
-  shapeColor = color(255, 0, 0); // Initial shape color
-  bgColor = color(255); // Initial background color
-  background(bgColor);
-  x = 0;
-  y = 0;
-}
-
-function draw() {
-  background(bgColor); // Set the background color
-  x = map(mouseX, 0, width, -200, 200); // Map mouse X to x position
-  y = map(mouseY, 0, height, -200, 200); // Map mouse Y to y position
-  translate(x, y); // Move shape position
-  rotateX(map(mouseY, 0, height, -PI, PI)); // Rotate based on mouse Y position
-  rotateY(map(mouseX, 0, width, -PI, PI)); // Rotate based on mouse X position
-  fill(shapeColor); // Set the shape color
-  
-  // Uncomment the shape you want to display:
-  //box(100); // Draw a 3D box
-  //sphere(50); // Draw a 3D sphere
-  cone(50, 100); // Draw a 3D cone
-  //cylinder(50, 100); // Draw a 3D cylinder
-  //torus(80, 20); // Draw a 3D torus
-}
-
+// Function to add new planets when the mouse is pressed
 function mousePressed() {
-  shapeColor = color(random(255), random(255), random(255)); // Change shape color on click
-  bgColor = color(random(255), random(255), random(255)); // Change background color on click
-}
-      </code></pre>
-    </div>
-  </div>
+  // Generate random properties for the new planet
+  let r = random(10, 30); // Random radius between 10 and 30
+  let d = random(100, 400); // Random distance from the sun between 100 and 400
+  let s = random(0.005, 0.03); // Random speed between 0.005 and 0.03
+  let c = color(random(255), random(255), random(255)); // Random color
 
-  <h1>Extra Examples</h1>
-  <div class="sketch-container">
-    <!-- Extra Example 1: Rain Effect -->
-    <div class="sketch">
-      <h2>Rain Effect</h2>
-      <pre><code>
-let drops = [];
-
-function setup() {
-  createCanvas(800, 600); // Set canvas size
-  for (let i = 0; i < 500; i++) { // Adjust the number of raindrops
-    drops.push(new Drop());
-  }
+  // Add the new planet to the planets array
+  planets.push(new Planet(r, d, s, c));
 }
 
-function draw() {
-  background(230, 230, 250); // Set background color (light lavender)
-  for (let drop of drops) {
-    drop.fall();
-    drop.show();
-  }
-}
-
-class Drop {
-  constructor() {
-    this.x = random(width); // Initial x position
-    this.y = random(-500, -50); // Initial y position
-    this.z = random(0, 20); // Depth of drop
-    this.len = map(this.z, 0, 20, 10, 20); // Length of drop
-    this.yspeed = map(this.z, 0, 20, 1, 20); // Speed of drop
+// Class to represent a planet
+class Planet {
+  // Constructor to initialize the planet's properties
+  constructor(r, d, s, c) {
+    this.r = r; // Radius of the planet
+    this.d = d; // Distance from the sun
+    this.angle = random(TWO_PI); // Initial angle for the orbit
+    this.speed = s; // Speed of the orbit
+    this.c = c; // Color of the planet
   }
 
-  fall() {
-    this.y = this.y + this.yspeed; // Update y position
-    let grav = map(this.z, 0, 20, 0, 0.2); // Gravity effect
-    this.yspeed = this.yspeed + grav;
-
-    if (this.y > height) {
-      this.y = random(-200, -100); // Reset y position when off screen
-      this.yspeed = map(this.z, 0, 20, 4, 10); // Reset speed
-    }
+  // Method to update the planet's position
+  orbit() {
+    this.angle += this.speed; // Increase the angle by the speed to create orbital motion
   }
 
+  // Method to display the planet
   show() {
-    let thick = map(this.z, 0, 20, 1, 3); // Thickness of drop
-    strokeWeight(thick);
-    stroke(138, 43, 226); // Color of drop (blue-violet)
-    line(this.x, this.y, this.x, this.y + this.len); // Draw the drop
+    fill(this.c); // Set the fill color to the planet's color
+    noStroke(); // Disable the stroke
+    let x = this.d * cos(this.angle); // Calculate the x position using cosine
+    let y = this.d * sin(this.angle); // Calculate the y position using sine
+    ellipse(x, y, this.r * 2); // Draw the planet as a circle
   }
 }
-      </code></pre>
-    </div>
-
-    <!-- Extra Example 2: Fly, Fight, Win -->
-    <div class="sketch">
-      <h2>Fly, Fight, Win</h2>
-      <pre><code>
-let size = 32; // Initial text size
-let growing = true; // Variable to control text size growth
-
-function setup() {
-  createCanvas(800, 600); // Set canvas size
-  textAlign(CENTER, CENTER); // Center align text
-  textSize(size); // Set initial text size
-}
-
-function draw() {
-  background(0); // Set background color (black)
-  
-  fill(255, 0, 0); // Set text color (red)
-  text('Fly', width / 2, height / 2 - 40); // Draw "Fly" text
-  
-  fill(0, 255, 0); // Set text color (green)
-  text('Fight', width / 2, height / 2); // Draw "Fight" text
-  
-  fill(0, 0, 255); // Set text color (blue)
-  text('Win', width / 2, height / 2 + 40); // Draw "Win" text
-
-  // Pulse effect to grow and shrink text size
-  if (growing) {
-    size += 0.5; // Increase text size
-    if (size > 64) { // Maximum text size
-      growing = false; // Start shrinking
-    }
-  } else {
-    size -= 0.5; // Decrease text size
-    if (size < 32) { // Minimum text size
-      growing = true; // Start growing
-    }
-  }
-  textSize(size); // Apply new text size
-}
-      </code></pre>
-    </div>
-
-    <!-- Extra Example 3: Interactive Fireworks -->
-    <div class="sketch">
-      <h2>Interactive Fireworks</h2>
-      <pre><code>
-let fireworks = []; // Array to hold fireworks
-let gravity; // Gravity effect
-
-function setup() {
-  createCanvas(800, 600); // Set canvas size
-  gravity = createVector(0, 0.2); // Set gravity vector
-  colorMode(HSB); // Set color mode to HSB
-  stroke(255); // Set stroke color to white
-  strokeWeight(4); // Set stroke weight
-  background(0); // Set background color to black
-}
-
-function draw() {
-  background(0, 0, 0, 25); // Create a fade effect
-  for (let i = fireworks.length - 1; i >= 0; i--) {
-    fireworks[i].update();
-    fireworks[i].show();
-    if (fireworks[i].done()) {
-      fireworks.splice(i, 1); // Remove finished fireworks
-    }
-  }
-}
-
-function mousePressed() {
-  fireworks.push(new Firework()); // Add new firework on mouse press
-}
-
-class Particle {
-  constructor(x, y, hu, firework) {
-    this.pos = createVector(x, y); // Position of particle
-    this.firework = firework; // Is it a firework particle or explosion
-    this.lifespan = 255; // Lifespan of particle
-    this.hu = hu; // Hue color
-    if (this.firework) {
-      this.vel = createVector(0, random(-12, -8)); // Initial velocity
-    } else {
-      this.vel = p5.Vector.random2D(); // Random direction
-      this.vel.mult(random(2, 10)); // Random speed
-    }
-    this.acc = createVector(0, 0); // Acceleration
-  }
-
-  applyForce(force) {
-    this.acc.add(force); // Apply force to acceleration
-  }
-
-  update() {
-    if (!this.firework) {
-      this.vel.mult(0.9); // Slow down over time
-      this.lifespan -= 4; // Reduce lifespan
-    }
-    this.vel.add(this.acc); // Apply acceleration to velocity
-    this.pos.add(this.vel); // Apply velocity to position
-    this.acc.mult(0); // Reset acceleration
-  }
-
-  done() {
-    return this.lifespan < 0; // Check if particle is dead
-  }
-
-  show() {
-    colorMode(HSB); // Set color mode
-    if (!this.firework) {
-      strokeWeight(2);
-      stroke(this.hu, 255, 255, this.lifespan); // Explosion particle color
-    } else {
-      strokeWeight(4);
-      stroke(this.hu, 255, 255); // Firework color
-    }
-    point(this.pos.x, this.pos.y); // Draw particle
-  }
-}
-
-class Firework {
-  constructor() {
-    this.hu = random(255); // Random color
-    this.firework = new Particle(random(width), height, this.hu, true); // Initial firework particle
-    this.exploded = false; // Has the firework exploded
-    this.particles = []; // Array for explosion particles
-  }
-
-  done() {
-    return this.exploded && this.particles.length === 0; // Check if firework is done
-  }
-
-  update() {
-    if (!this.exploded) {
-      this.firework.applyForce(gravity); // Apply gravity to firework
-      this.firework.update();
-
-      if (this.firework.vel.y >= 0) {
-        this.exploded = true; // Trigger explosion
-        this.explode();
-      }
-    }
-
-    for (let i = this.particles.length - 1; i >= 0; i--) {
-      this.particles[i].applyForce(gravity); // Apply gravity to particles
-      this.particles[i].update();
-      if (this.particles[i].done()) {
-        this.particles.splice(i, 1); // Remove dead particles
-      }
-    }
-  }
-
-  explode() {
-    for (let i = 0; i < 100; i++) {
-      let p = new Particle(this.firework.pos.x, this.firework.pos.y, this.hu, false); // Create explosion particles
-      this.particles.push(p);
-    }
-  }
-
-  show() {
-    if (!this.exploded) {
-      this.firework.show(); // Show initial firework particle
-    }
-
-    for (let p of this.particles) {
-      p.show(); // Show explosion particles
-    }
-  }
-}
-      </code></pre>
-    </div>
-	
-	 <div class="sketch-container">
-    <!-- Example: Plane Shooting Pixels -->
-    <div class="sketch">
-      <h2>Plane Shooting Pixels</h2>
-      <pre><code>
-let bullets = []; // Array to hold bullets
-
-function setup() {
-  createCanvas(800, 600); // Set canvas size
-}
-
-function draw() {
-  background(0); // Clear the canvas every frame
-  
-  // Draw the plane at the mouse position
-  fill(255, 0, 0); // Red color for the plane
-  noStroke();
-  triangle(mouseX - 10, mouseY + 10, mouseX + 10, mouseY + 10, mouseX, mouseY - 20); // Plane shape
-
-  // Update and display bullets
-  for (let i = bullets.length - 1; i >= 0; i--) {
-    bullets[i].update();
-    bullets[i].show();
-    if (bullets[i].offScreen()) {
-      bullets.splice(i, 1); // Remove bullets that are off-screen
-    }
-  }
-}
-
-function mousePressed() {
-  bullets.push(new Bullet(mouseX, mouseY)); // Add new bullet at the plane's position
-}
-
-class Bullet {
-  constructor(x, y) {
-    this.pos = createVector(x, y); // Position of the bullet
-    this.vel = createVector(0, -5); // Velocity of the bullet
-  }
-
-  update() {
-    this.pos.add(this.vel); // Update the position
-  }
-
-  show() {
-    fill(255); // White color for the bullet
-    noStroke();
-    ellipse(this.pos.x, this.pos.y, 8, 8); // Draw the bullet as a small circle
-  }
-
-  offScreen() {
-    return (this.pos.y < 0); // Check if the bullet is off the top of the screen
-  }
-}
-      </code></pre>
-    </div>
-  </div>
-	
-	
-  </div>
+    </code>
+  </pre>
 </body>
 </html>
