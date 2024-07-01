@@ -8,6 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
+  <div id="completion-banner" class="hidden">COMPLETE!</div>
   <h1>Interactive 3D Solar System</h1>
   <p>This interactive 3D solar system demonstrates the use of the <strong><code>PI</code></strong> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
   <a href="https://editor.p5js.org/" target="_blank">Open p5.js Editor</a>
@@ -27,6 +28,18 @@
     <p><strong>Sine and Cosine:</strong> Trigonometric functions used to calculate positions in circular motion.</p>
     <p><strong>Array:</strong> A data structure that holds multiple values.</p>
     <p><strong>Global Variables:</strong> Variables that are declared outside any function and can be accessed anywhere in the code.</p>
+    <p><strong>createCanvas(width, height, WEBGL):</strong> Creates a drawing canvas of specified width and height. The WEBGL parameter enables 3D rendering.</p>
+    <p><strong>background(color):</strong> Sets the background color of the canvas.</p>
+    <p><strong>directionalLight(color, x, y, z):</strong> Sets a directional light in the 3D environment.</p>
+    <p><strong>ambientLight(brightness):</strong> Adds ambient light to the scene.</p>
+    <p><strong>rotateY(angle):</strong> Rotates the entire scene around the Y-axis by the specified angle.</p>
+    <p><strong>push() and pop():</strong> Saves and restores the current drawing style and transformations, respectively.</p>
+    <p><strong>fill(color):</strong> Sets the fill color for shapes.</p>
+    <p><strong>noStroke():</strong> Disables drawing the outline (stroke) of shapes.</p>
+    <p><strong>translate(x, y):</strong> Moves the origin of the drawing canvas to the specified x and y coordinates.</p>
+    <p><strong>sphere(radius):</strong> Draws a sphere with the specified radius.</p>
+    <p><strong>class:</strong> Defines a blueprint for creating objects with predefined properties and methods.</p>
+    <p><strong>constructor:</strong> A special method for initializing newly created objects.</p>
   </aside>
 
   <h3>Global Variables</h3>
@@ -226,5 +239,7 @@ class Planet {
   }
 }
   </code></pre>
+
+  <script src="script.js"></script>
 </body>
 </html>

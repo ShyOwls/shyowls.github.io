@@ -89,3 +89,23 @@ label {
 input[type="checkbox"] {
   margin-right: 10px;
 }
+
+/* Style for completion banner */
+#completion-banner {
+  display: none;
+  background: #0073e6;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#completion-banner.hidden {
+  display: none;
+}
+
+#completion-banner.visible {
+  display: block;
+}
