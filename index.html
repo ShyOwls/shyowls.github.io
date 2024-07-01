@@ -8,13 +8,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
+  <!-- Banner that appears when all tasks are completed -->
   <div id="completion-banner" class="hidden">COMPLETE!</div>
+
+  <!-- Main title of the page -->
   <h1>Interactive 3D Solar System</h1>
+
+  <!-- Description and link to p5.js editor -->
   <p>This interactive 3D solar system demonstrates the use of the <strong><code>PI</code></strong> function in p5.js. Click the link below to view and edit the code in the p5.js web editor:</p>
   <a href="https://editor.p5js.org/" target="_blank">Open p5.js Editor</a>
 
+  <!-- Jump link to the activity code section -->
   <a href="#activity-code" style="display:block; margin-top:20px; font-weight:bold;">Jump to Activity Code</a>
 
+  <!-- Explanation of the code -->
   <h2>Code Explanation</h2>
   <p>
     The <strong>sun</strong> is represented by a central sphere, and planets orbit around it in 3D space. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
@@ -23,6 +30,7 @@
     The JavaScript code starts by declaring global variables: <em>sun</em> to store the sun object and <em>planets</em> to store multiple planet objects in an array.
   </p>
 
+  <!-- Definitions and Terms section -->
   <aside>
     <h3>Definitions and Terms</h3>
     <p><strong>Sine and Cosine:</strong> Trigonometric functions used to calculate positions in circular motion.</p>
@@ -42,6 +50,7 @@
     <p><strong>constructor:</strong> A special method for initializing newly created objects.</p>
   </aside>
 
+  <!-- Code blocks with explanations for students to understand and follow -->
   <h3>Global Variables</h3>
   <pre><code>
 // Variable to store the sun object
@@ -61,7 +70,7 @@ function setup() {
   // Initialize the sun with a radius of 50, at the center of the canvas, and a yellow color
   sun = new Planet(50, 0, 0, color(255, 204, 0));
 
-  // Initialize two planets with different properties
+  // Initialize planets with different properties
   planets.push(new Planet(20, 150, 0.02, color(100, 100, 255))); // Blue planet
   planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))); // Red planet
   planets.push(new Planet(25, 200, 0.015, color(0, 255, 0))); // Green planet
@@ -119,15 +128,16 @@ class Planet {
     push();
     fill(this.c); // Set the fill color to the planet's color
     noStroke(); // Disable the stroke
-    let x = this.d * cos(this.angle);
-    let y = this.d * sin(this.angle);
+    let x = this.d * cos(this.angle); // Calculate the x position using cosine
+    let y = this.d * sin(this.angle); // Calculate the y position using sine
     translate(x, y);
-    sphere(this.r);
+    sphere(this.r); // Draw the planet as a sphere
     pop();
   }
 }
   </code></pre>
 
+  <!-- Procedures section with detailed steps -->
   <aside>
     <h3>Procedures</h3>
     <p><strong>Change the Background Color:</strong></p>
@@ -162,6 +172,7 @@ class Planet {
     </ul>
   </aside>
 
+  <!-- Checkbox tasks for students to complete -->
   <div>
     <label>
       <input type="checkbox" id="task1"> Change the Background Color
@@ -185,6 +196,7 @@ class Planet {
     <button id="jump-to-top" style="display:none;">Jump to Top</button>
   </div>
 
+  <!-- Activity Code section for students to copy and paste -->
   <h2 id="activity-code">Activity Code</h2>
   <p>Copy and paste the following code into your p5.js editor:</p>
   <pre><code>
@@ -236,6 +248,7 @@ class Planet {
 }
   </code></pre>
 
+  <!-- Link to the external JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>
