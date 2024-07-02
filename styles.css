@@ -9,7 +9,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #484848;
-  color: #333;
+  color: #f0f0f0;
   padding: 20px;
 }
 
@@ -44,14 +44,33 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Style for the top section */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Style for asides */
+aside {
+  background: #e0f7fa;
+  padding: 15px;
+  border-left: 5px solid #0073e6;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 48%;
+}
+
 /* Style for code blocks */
 pre, code {
-  background-color: #e8e8e8;
-  border: 1px solid #ccc;
+  background-color: #333;
+  color: #f8f8f2;
+  border: 1px solid #444;
   padding: 10px;
   border-radius: 5px;
   overflow-x: auto;
   margin-bottom: 20px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 /* Style for the code within paragraphs */
@@ -64,19 +83,10 @@ code {
 body {
   max-width: 800px;
   margin: 0 auto;
-  background: #fff;
+  background: #333;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for asides */
-aside {
-  background: #e0f7fa;
-  padding: 15px;
-  border-left: 5px solid #0073e6;
-  margin-bottom: 20px;
-  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
 /* Style for checkbox labels */

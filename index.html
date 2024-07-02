@@ -21,34 +21,62 @@
   <!-- Jump link to the activity code section -->
   <a href="#activity-code" style="display:block; margin-top:20px; font-weight:bold;">Jump to Activity Code</a>
 
-  <!-- Explanation of the code -->
-  <h2>Code Explanation</h2>
-  <p>
-    The <strong>sun</strong> is represented by a central sphere, and planets orbit around it in 3D space. Each planet's position is calculated using the cosine and sine of an angle, which is incremented over time to create the orbital motion.
-  </p>
-  <p>
-    The JavaScript code starts by declaring global variables: <em>sun</em> to store the sun object and <em>planets</em> to store multiple planet objects in an array.
-  </p>
+  <div class="top-section">
+    <!-- Procedures section with detailed steps -->
+    <aside class="procedures">
+      <h3>Procedures</h3>
+      <p><strong>Change the Background Color:</strong></p>
+      <ul>
+        <li>Locate the line in the draw function that sets the background color.</li>
+        <li>Change the color to a dark blue by replacing 0 with the RGB values for dark blue.</li>
+      </ul>
+      <p><strong>Add More Planets:</strong></p>
+      <ul>
+        <li>Locate the section in the setup function where the planets are initialized.</li>
+        <li>Add two more planets with different properties.</li>
+      </ul>
+      <p><strong>Change the Speed of Rotation for the Entire Scene:</strong></p>
+      <ul>
+        <li>Locate the line in the draw function that rotates the scene.</li>
+        <li>Increase the speed by changing the rotation factor.</li>
+      </ul>
+      <p><strong>Modify the Size of the Sun:</strong></p>
+      <ul>
+        <li>Locate the line in the setup function where the sun is initialized.</li>
+        <li>Increase the radius of the sun.</li>
+      </ul>
+      <p><strong>Change the Color of the Sun:</strong></p>
+      <ul>
+        <li>Locate the line in the setup function where the sun is initialized.</li>
+        <li>Change the color to a brighter yellow.</li>
+      </ul>
+      <p><strong>Adjust the Distance of a Planet from the Sun:</strong></p>
+      <ul>
+        <li>Locate the initialization of the red planet in the setup function.</li>
+        <li>Change the distance of the red planet from the sun.</li>
+      </ul>
+    </aside>
 
-  <!-- Definitions and Terms section -->
-  <aside>
-    <h3>Definitions and Terms</h3>
-    <p><strong>Sine and Cosine:</strong> Trigonometric functions used to calculate positions in circular motion.</p>
-    <p><strong>Array:</strong> A data structure that holds multiple values.</p>
-    <p><strong>Global Variables:</strong> Variables that are declared outside any function and can be accessed anywhere in the code.</p>
-    <p><strong>createCanvas(width, height, WEBGL):</strong> Creates a drawing canvas of specified width and height. The WEBGL parameter enables 3D rendering.</p>
-    <p><strong>background(color):</strong> Sets the background color of the canvas.</p>
-    <p><strong>directionalLight(color, x, y, z):</strong> Sets a directional light in the 3D environment.</p>
-    <p><strong>ambientLight(brightness):</strong> Adds ambient light to the scene.</p>
-    <p><strong>rotateY(angle):</strong> Rotates the entire scene around the Y-axis by the specified angle.</p>
-    <p><strong>push() and pop():</strong> Saves and restores the current drawing style and transformations, respectively.</p>
-    <p><strong>fill(color):</strong> Sets the fill color for shapes.</p>
-    <p><strong>noStroke():</strong> Disables drawing the outline (stroke) of shapes.</p>
-    <p><strong>translate(x, y):</strong> Moves the origin of the drawing canvas to the specified x and y coordinates.</p>
-    <p><strong>sphere(radius):</strong> Draws a sphere with the specified radius.</p>
-    <p><strong>class:</strong> Defines a blueprint for creating objects with predefined properties and methods.</p>
-    <p><strong>constructor:</strong> A special method for initializing newly created objects.</p>
-  </aside>
+    <!-- Definitions and Terms section -->
+    <aside class="definitions">
+      <h3>Definitions and Terms</h3>
+      <p><strong>Sine and Cosine:</strong> Trigonometric functions used to calculate positions in circular motion.</p>
+      <p><strong>Array:</strong> A data structure that holds multiple values.</p>
+      <p><strong>Global Variables:</strong> Variables that are declared outside any function and can be accessed anywhere in the code.</p>
+      <p><strong>createCanvas(width, height, WEBGL):</strong> Creates a drawing canvas of specified width and height. The WEBGL parameter enables 3D rendering.</p>
+      <p><strong>background(color):</strong> Sets the background color of the canvas.</p>
+      <p><strong>directionalLight(color, x, y, z):</strong> Sets a directional light in the 3D environment.</p>
+      <p><strong>ambientLight(brightness):</strong> Adds ambient light to the scene.</p>
+      <p><strong>rotateY(angle):</strong> Rotates the entire scene around the Y-axis by the specified angle.</p>
+      <p><strong>push() and pop():</strong> Saves and restores the current drawing style and transformations, respectively.</p>
+      <p><strong>fill(color):</strong> Sets the fill color for shapes.</p>
+      <p><strong>noStroke():</strong> Disables drawing the outline (stroke) of shapes.</p>
+      <p><strong>translate(x, y):</strong> Moves the origin of the drawing canvas to the specified x and y coordinates.</p>
+      <p><strong>sphere(radius):</strong> Draws a sphere with the specified radius.</p>
+      <p><strong>class:</strong> Defines a blueprint for creating objects with predefined properties and methods.</p>
+      <p><strong>constructor:</strong> A special method for initializing newly created objects.</p>
+    </aside>
+  </div>
 
   <!-- Code blocks with explanations for students to understand and follow -->
   <h3>Global Variables</h3>
@@ -136,41 +164,6 @@ class Planet {
   }
 }
   </code></pre>
-
-  <!-- Procedures section with detailed steps -->
-  <aside>
-    <h3>Procedures</h3>
-    <p><strong>Change the Background Color:</strong></p>
-    <ul>
-      <li>Locate the line in the draw function that sets the background color.</li>
-      <li>Change the color to a dark blue by replacing 0 with the RGB values for dark blue.</li>
-    </ul>
-    <p><strong>Add More Planets:</strong></p>
-    <ul>
-      <li>Locate the section in the setup function where the planets are initialized.</li>
-      <li>Add two more planets with different properties.</li>
-    </ul>
-    <p><strong>Change the Speed of Rotation for the Entire Scene:</strong></p>
-    <ul>
-      <li>Locate the line in the draw function that rotates the scene.</li>
-      <li>Increase the speed by changing the rotation factor.</li>
-    </ul>
-    <p><strong>Modify the Size of the Sun:</strong></p>
-    <ul>
-      <li>Locate the line in the setup function where the sun is initialized.</li>
-      <li>Increase the radius of the sun.</li>
-    </ul>
-    <p><strong>Change the Color of the Sun:</strong></p>
-    <ul>
-      <li>Locate the line in the setup function where the sun is initialized.</li>
-      <li>Change the color to a brighter yellow.</li>
-    </ul>
-    <p><strong>Adjust the Distance of a Planet from the Sun:</strong></p>
-    <ul>
-      <li>Locate the initialization of the red planet in the setup function.</li>
-      <li>Change the distance of the red planet from the sun.</li>
-    </ul>
-  </aside>
 
   <!-- Checkbox tasks for students to complete -->
   <div>
