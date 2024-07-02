@@ -53,7 +53,8 @@ a:hover {
 
 /* Style for asides */
 aside {
-  background: #e0f7fa;
+  background: #333;
+  color: #f0f0f0;
   padding: 15px;
   border-left: 5px solid #0073e6;
   margin-bottom: 20px;
@@ -63,7 +64,7 @@ aside {
 
 /* Style for code blocks */
 pre, code {
-  background-color: #333;
+  background-color: #222;
   color: #f8f8f2;
   border: 1px solid #444;
   padding: 10px;
