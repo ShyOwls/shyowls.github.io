@@ -63,8 +63,8 @@ aside {
 }
 
 /* Style for code blocks */
-pre, code {
-  background-color: #222;
+pre {
+  background-color: #111;
   color: #f0f0f0;
   border: 1px solid #444;
   padding: 10px;
@@ -78,6 +78,7 @@ pre, code {
 code {
   padding: 2px 5px;
   font-size: 0.9em;
+  color: green;
 }
 
 /* Adding some padding and margin to the body */
@@ -94,7 +95,7 @@ body {
 label {
   display: block;
   margin-bottom: 10px;
-  cursor: pointer;
+  cursor: crosshair;
 }
 
 input[type="checkbox"] {
