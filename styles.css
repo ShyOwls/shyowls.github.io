@@ -95,7 +95,7 @@ body {
 label {
   display: block;
   margin-bottom: 10px;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -143,4 +143,15 @@ input[type="checkbox"] {
 
 #jump-to-top:hover {
   background: #005bb5;
+}
+
+/* Style for the Air Force logo */
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.airforce-logo {
+  width: 200px;
+  height: auto;
 }

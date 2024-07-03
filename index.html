@@ -6,8 +6,14 @@
   <title>Interactive 3D Solar System</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="script.js"></script>
 </head>
 <body>
+  <!-- Air Force logo at the top -->
+  <div class="logo-container">
+    <img src="airforce_logo.jpg" alt="Air Force Logo" class="airforce-logo">
+  </div>
+
   <!-- Banner that appears when all tasks are completed -->
   <div id="completion-banner" class="hidden">COMPLETE!</div>
 
@@ -113,6 +119,9 @@ function draw() {
   // Set the background color to black
   background(0);
 
+  // Draw stars in the background
+  drawStars();
+
   // Set lights for the 3D environment
   directionalLight(255, 255, 255, 1, 1, -1);
   ambientLight(50);
@@ -129,6 +138,20 @@ function draw() {
     planet.orbit();
     // Display the planet
     planet.show();
+  }
+}
+
+// Function to draw stars in the background
+function drawStars() {
+  for (let i = 0; i < 100; i++) {
+    push();
+    fill(255);
+    let x = random(-width / 2, width / 2);
+    let y = random(-height / 2, height / 2);
+    let z = random(-800, -400);
+    translate(x, y, z);
+    sphere(2);
+    pop();
   }
 }
   </code></pre>
@@ -205,6 +228,7 @@ function setup() {
 
 function draw() {
   background(0);
+  drawStars();
   directionalLight(255, 255, 255, 1, 1, -1);
   ambientLight(50);
   rotateY(frameCount * 0.02);
@@ -212,6 +236,19 @@ function draw() {
   for (let planet of planets) {
     planet.orbit();
     planet.show();
+  }
+}
+
+function drawStars() {
+  for (let i = 0; i < 100; i++) {
+    push();
+    fill(255);
+    let x = random(-width / 2, width / 2);
+    let y = random(-height / 2, height / 2);
+    let z = random(-800, -400);
+    translate(x, y, z);
+    sphere(2);
+    pop();
   }
 }
 
@@ -240,6 +277,11 @@ class Planet {
   }
 }
   </code></pre>
+
+  <!-- Air Force logo at the bottom -->
+  <div class="logo-container">
+    <img src="airforce_logo.jpg" alt="Air Force Logo" class="airforce-logo">
+  </div>
 
   <!-- Link to the external JavaScript file -->
   <script src="script.js"></script>
