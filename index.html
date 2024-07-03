@@ -92,6 +92,7 @@ let sun;
 
 // Array to store multiple planet objects
 let planets = [];
+let stars = []; // Array to store star positions
   </code></pre>
 
   <h3>Setup Function</h3>
@@ -107,8 +108,14 @@ function setup() {
   // Initialize planets with different properties
   planets.push(new Planet(20, 150, 0.02, color(100, 100, 255))); // Blue planet
   planets.push(new Planet(30, 300, 0.01, color(255, 100, 100))); // Red planet
-  planets.push(new Planet(25, 200, 0.015, color(0, 255, 0))); // Green planet
-  planets.push(new Planet(35, 400, 0.005, color(255, 255, 0))); // Yellow planet
+
+  // Generate star positions
+  for (let i = 0; i < 500; i++) { // Increase the number of stars
+    let x = random(-width / 2, width / 2);
+    let y = random(-height / 2, height / 2);
+    let z = random(-1000, 0); // Adjust the depth to cover more of the canvas
+    stars.push({ x, y, z });
+  }
 }
   </code></pre>
 
@@ -143,14 +150,11 @@ function draw() {
 
 // Function to draw stars in the background
 function drawStars() {
-  for (let i = 0; i < 100; i++) {
+  for (let star of stars) {
     push();
     fill(255);
-    let x = random(-width / 2, width / 2);
-    let y = random(-height / 2, height / 2);
-    let z = random(-800, -400);
-    translate(x, y, z);
-    sphere(2);
+    translate(star.x, star.y, star.z);
+    sphere(1); // Make the stars smaller for a more subtle effect
     pop();
   }
 }
@@ -218,12 +222,21 @@ class Planet {
   <pre><code>
 let sun;
 let planets = [];
+let stars = []; // Array to store star positions
 
 function setup() {
   createCanvas(800, 800, WEBGL);
   sun = new Planet(50, 0, 0, color(255, 204, 0));
   planets.push(new Planet(20, 150, 0.02, color(100, 100, 255)));
   planets.push(new Planet(30, 300, 0.01, color(255, 100, 100)));
+
+  // Generate star positions
+  for (let i = 0; i < 500; i++) { // Increase the number of stars
+    let x = random(-width / 2, width / 2);
+    let y = random(-height / 2, height / 2);
+    let z = random(-1000, 0); // Adjust the depth to cover more of the canvas
+    stars.push({ x, y, z });
+  }
 }
 
 function draw() {
@@ -240,14 +253,11 @@ function draw() {
 }
 
 function drawStars() {
-  for (let i = 0; i < 100; i++) {
+  for (let star of stars) {
     push();
     fill(255);
-    let x = random(-width / 2, width / 2);
-    let y = random(-height / 2, height / 2);
-    let z = random(-800, -400);
-    translate(x, y, z);
-    sphere(2);
+    translate(star.x, star.y, star.z);
+    sphere(1); // Make the stars smaller for a more subtle effect
     pop();
   }
 }
