@@ -95,7 +95,7 @@ body {
 label {
   display: block;
   margin-bottom: 10px;
-  cursor: pointer;
+  cursor: crosshair;
 }
 
 input[type="checkbox"] {
